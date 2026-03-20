@@ -7,9 +7,7 @@ const nextConfig = {
       { protocol: 'https', hostname: 'images.clerk.dev' },
     ],
   },
-  experimental: {
     serverComponentsExternalPackages: ['mongoose'],
-  },
 };
 
 export default nextConfig;
