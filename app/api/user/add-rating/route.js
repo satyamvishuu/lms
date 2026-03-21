@@ -30,7 +30,7 @@ export async function POST(req) {
       return NextResponse.json({ success: false, message: 'Course not found.' });
     }
 
-    // ✅ FIX enrollment check
+    // enrollment check
     const isEnrolled = user?.enrolledCourses?.some(
       (id) => id.toString() === courseId
     );
@@ -42,7 +42,7 @@ export async function POST(req) {
       });
     }
 
-    // ✅ rating logic
+    // rating logic
     const existingIdx = course.courseRatings.findIndex(
       (r) => r.userId === userId
     );

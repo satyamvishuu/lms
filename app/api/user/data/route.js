@@ -16,7 +16,7 @@ export async function GET() {
 
     await connectDB();
 
-    // ✅ FIX HERE
+   
     const user = await User.findOne({ clerkId: userId });
 
     // fallback if webhook not created user yet

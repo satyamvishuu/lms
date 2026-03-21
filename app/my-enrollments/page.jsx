@@ -20,12 +20,12 @@ export default function MyEnrollmentsPage() {
 
   const [progressMap, setProgressMap] = useState({});
 
-  // 🔹 Load enrolled courses
+  // Load enrolled courses
   useEffect(() => {
     fetchEnrolledCourses();
   }, []);
 
-  // 🔹 Load progress for each course
+  // Load progress for each course
   useEffect(() => {
     const loadProgress = async () => {
       try {

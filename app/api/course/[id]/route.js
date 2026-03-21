@@ -21,12 +21,12 @@ export async function GET(req, context) {
       );
     }
 
-    // 👇 get educator
+    // get educator
     const educator = await User.findOne({
       clerkId: course.educator,
     }).select('name imageUrl');
 
-    // 👇 check enrollment
+    // check enrollment
     let isEnrolled = false;
 
     if (userId) {
@@ -39,7 +39,6 @@ export async function GET(req, context) {
 
     const courseObj = course.toObject();
 
-    // 👇 MAIN FIX
     courseObj.courseContent.forEach((chapter) => {
       chapter.chapterContent.forEach((lecture) => {
         if (!lecture.isPreviewFree && !isEnrolled) {

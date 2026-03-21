@@ -33,7 +33,7 @@ export async function POST(req) {
       });
     }
 
-    // ✅ FIX enrollment check
+    // enrollment check
     const alreadyEnrolled = userData.enrolledCourses.some(
       (id) => id.toString() === courseId
     );

@@ -11,19 +11,19 @@ export async function POST(req) {
       throw new Error('Webhook secret not set');
     }
 
-    // ✅ Get headers
+    //Get headers
     const svixId = req.headers.get('svix-id');
     const svixTimestamp = req.headers.get('svix-timestamp');
     const svixSignature = req.headers.get('svix-signature');
 
     if (!svixId || !svixTimestamp || !svixSignature) {
       return NextResponse.json(
-        { success: false, message: 'Missing svix headers' },
+        { success: false, message: 'Missing svix' },
         { status: 400 }
       );
     }
 
-    // ✅ IMPORTANT: raw body
+    //  raw body
     const body = await req.text();
 
     const wh = new Webhook(webhookSecret);
@@ -36,7 +36,7 @@ export async function POST(req) {
         'svix-signature': svixSignature,
       });
     } catch (err) {
-      console.error("❌ Signature Error:", err.message);
+      console.error(" Signature Error:", err.message);
       return NextResponse.json(
         { success: false, message: 'Invalid signature' },
         { status: 400 }
@@ -47,13 +47,13 @@ export async function POST(req) {
 
     const { data, type } = event;
 
-    // ✅ Extract email safely
+    // Extract email safely
     const email = data?.email_addresses?.[0]?.email_address;
 
-    // ✅ Common user object
+    // Common user object
     const userData = {
       clerkId: data.id,
-      email: email || undefined, // ❌ no fake email
+      email: email || undefined, // no fake email
       name: `${data.first_name || ""} ${data.last_name || ""}`.trim(),
       imageUrl: data.image_url || "",
       role: "student",
@@ -61,13 +61,13 @@ export async function POST(req) {
 
     switch (type) {
 
-      // ✅ CREATE + UPDATE (UPSERT SAFE)
+      // CREATE + UPDATE (UPSERT SAFE)
       case 'user.created':
       case 'user.updated':
 
         // skip if no email (important)
         if (!email) {
-          console.log("⚠️ No email found, skipping...");
+          console.log("email not found, skipping...");
           return NextResponse.json({ success: true });
         }
 
@@ -82,7 +82,7 @@ export async function POST(req) {
         );
         break;
 
-      // ✅ DELETE (SAFE)
+
       case 'user.deleted':
         await User.findOneAndDelete({ clerkId: data.id });
         break;
@@ -94,7 +94,7 @@ export async function POST(req) {
     return NextResponse.json({ success: true });
 
   } catch (error) {
-    console.error("🔥 Webhook error:", error);
+    console.error("Webhook error:", error);
     return NextResponse.json(
       { success: false, message: error.message },
       { status: 500 }

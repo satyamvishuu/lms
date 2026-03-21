@@ -16,7 +16,6 @@ export async function POST() {
 
     await connectDB();
 
-    // ✅ First check if user exists
     const existingUser = await User.findOne({ clerkId: userId });
 
     if (!existingUser) {
@@ -26,7 +25,6 @@ export async function POST() {
       );
     }
 
-    // ✅ Only update role (no upsert)
     await User.findOneAndUpdate(
       { clerkId: userId },
       { $set: { role: 'educator' } },

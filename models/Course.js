@@ -13,7 +13,7 @@ const chapterSchema = new mongoose.Schema({
   chapterId:      { type: String, required: true },
   chapterOrder:   { type: Number, required: true },
   chapterTitle:   { type: String, required: true },
-  chapterContent: { type: [lectureSchema], default: [] }, // ✅ safe
+  chapterContent: { type: [lectureSchema], default: [] }, 
 });
 
 const courseSchema = new mongoose.Schema(
@@ -36,14 +36,14 @@ const courseSchema = new mongoose.Schema(
           rating: { type: Number, min: 1, max: 5 },
         },
       ],
-      default: [], // ✅ prevent crash
+      default: [], // prevent crash
     },
 
-    // ✅ FIXED: remove ref (since using Clerk string)
+  
     educator: {
       type: String, // clerkId
       required: true,
-      index: true,  // 🚀 performance
+      index: true,  // performance
     },
 
     enrolledStudents: {
@@ -54,7 +54,7 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// 🚀 helpful index for filtering published courses
+// index for filtering published courses
 courseSchema.index({ isPublished: 1 });
 
 const Course = mongoose.models.Course || mongoose.model('Course', courseSchema);

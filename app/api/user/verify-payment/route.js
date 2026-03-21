@@ -21,7 +21,7 @@ export async function POST(req) {
       purchaseId,
     } = await req.json();
 
-    // ✅ Verify signature
+    // Verify signature
     const generated = crypto
       .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET)
       .update(`${razorpay_order_id}|${razorpay_payment_id}`)
@@ -36,7 +36,7 @@ export async function POST(req) {
 
     await connectDB();
 
-    // ✅ Update purchase
+    // Update purchase
     const purchase = await Purchase.findByIdAndUpdate(
       purchaseId,
       {
@@ -54,7 +54,7 @@ export async function POST(req) {
       });
     }
 
-    // ✅ FIX: update user using clerkId
+    // update user using clerkId
     await User.findOneAndUpdate(
       { clerkId: purchase.userId },
       {
@@ -62,7 +62,7 @@ export async function POST(req) {
       }
     );
 
-    // ✅ Course update is fine (courseId is ObjectId)
+    // Course update is fine (courseId is ObjectId)
     await Course.findByIdAndUpdate(purchase.courseId, {
       $addToSet: { enrolledStudents: purchase.userId },
     });
