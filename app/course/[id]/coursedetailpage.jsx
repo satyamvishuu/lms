@@ -9,6 +9,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Navbar from '../../../components/student/Navbar';
 import Footer from '../../../components/student/Footer';
+import ProfessionalNavbar from '@/components/ProfessionalNavbar';
 
 export default function CourseDetailPage() {
   const { id } = useParams();
@@ -103,7 +104,7 @@ export default function CourseDetailPage() {
   if (loading) {
     return (
       <>
-        <Navbar />
+        <ProfessionalNavbar />
         <div className="min-h-screen flex items-center justify-center">
           <div className="text-5xl animate-bounce">📚</div>
         </div>
