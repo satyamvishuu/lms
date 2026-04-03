@@ -43,11 +43,11 @@ export default function Navbar() {
           {/* Desktop */}
           <div className="hidden md:flex items-center gap-6">
             <Link href="/courses" className="text-gray-600 font-semibold hover:text-primary-600 transition-colors">
-              📚 Courses
+              
             </Link>
             {user && (
               <Link href="/my-enrollments" className="text-gray-600 font-semibold hover:text-primary-600 transition-colors">
-                🎒 My Learning
+      
               </Link>
             )}
             {user ? (
@@ -59,7 +59,7 @@ export default function Navbar() {
               </div>
             ) : (
               <SignInButton mode="modal">
-                <button className="btn-primary text-sm py-2 px-5">🚀 Get Started</button>
+                <button className="btn-primary text-sm py-2 px-5">Log In</button>
               </SignInButton>
             )}
           </div>
@@ -86,7 +86,7 @@ export default function Navbar() {
               </div>
             ) : (
               <SignInButton mode="modal">
-                <button className="btn-primary text-sm">🚀 Get Started</button>
+                <button className="btn-primary text-sm">Log In</button>
               </SignInButton>
             )}
           </div>

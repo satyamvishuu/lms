@@ -62,7 +62,7 @@ export default function Navbar() {
               </div>
             ) : (
               <SignInButton mode="modal">
-                <button className="btn-primary text-sm py-2 px-5">🚀 Get Started</button>
+                <button className="btn-primary text-sm py-2 px-5">Log In</button>
               </SignInButton>
             )}
           </div>
@@ -89,7 +89,7 @@ export default function Navbar() {
               </div>
             ) : (
               <SignInButton mode="modal">
-                <button className="btn-primary text-sm">🚀 Get Started</button>
+                <button className="btn-primary text-sm">Log In</button>
               </SignInButton>
             )}
           </div>
