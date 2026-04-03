@@ -7,7 +7,6 @@ import { useUser } from '@clerk/nextjs';
 import { useAppContext } from '../../../context/AppContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Navbar from '../../../components/student/Navbar';
 import Footer from '../../../components/student/Footer';
 import ProfessionalNavbar from '@/components/ProfessionalNavbar';
 
@@ -121,7 +120,7 @@ export default function CourseDetailPage() {
 
   return (
     <div>
-      <Navbar />
+      <ProfessionalNavbar />
 
       <div className="bg-gradient-to-br from-primary-900 to-primary-700 text-white py-14 px-6">
         <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-8 items-start">
